@@ -1,18 +1,49 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <breadcrumb :items="dataitems" :icon="icon" v-on:breadcrumbItemClicked="itemIsClicked"/>
+    <button v-on:click="addToBreadCrumb()">Add to breadcrumb</button>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import breadcrumb from './fio-breadcrumb.vue'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    breadcrumb
+  },
+  data () {
+    return {
+      /* Parse either: arrow-right or chevron-right for dividers */
+      icon: 'arrow-right',
+      dataitems: [
+        {'text': 'Category1', 'value': 'if you want to parse some more information'},
+        {'text': 'Category2', 'value': 'if you want to parse some more information'},
+        {'text': 'Category3', 'value': 'if you want to parse some more information'},
+        {'text': 'Category4', 'value': 'if you want to parse some more information'}
+      ],
+      countForTest: 4
+    }
+  },
+
+  methods: {
+    itemIsClicked: function (item) {
+      console.log('breadcrumb item have been pressed ' + JSON.stringify(item));
+    },
+
+    addToBreadCrumb: function () {
+      let counter = this.countForTest;
+      let newCount = counter + 1;
+      this.countForTest = newCount;
+
+      let newText = 'Category' + this.countForTest; 
+
+      this.dataitems.push({'text': newText, 'value': 'if you want to parse some more information'})
+
+    }
   }
+
 }
 </script>
 
@@ -24,5 +55,9 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+button {
+  margin-top: 200px;
 }
 </style>

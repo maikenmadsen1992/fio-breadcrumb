@@ -1,13 +1,24 @@
 {
   "name": "fio-breadcrumb",
   "version": "0.1.0",
-  "private": true,
+  "description": "A simple breadcrumb with header",
+  "author": {
+    "name": "Maiken Madsen"
+  },
+  "private": false,
+  "files": ["dist"],
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "build:npm": "vue-cli-service build --target lib --name fio-breadcrumb src/fio-breadcrumb.vue"
   },
+  "main": "dist/fio-breadcrumb.umd.js",
+  "unpkg": "dist/fio-breadcrumb.umd.min.js",
+
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.26",
+    "@fortawesome/free-solid-svg-icons": "^5.12.0",
+    "@fortawesome/vue-fontawesome": "^0.1.9",
     "core-js": "^3.4.3",
     "vue": "^2.6.10"
   },
@@ -26,8 +37,7 @@
       "node": true
     },
     "extends": [
-      "plugin:vue/essential",
-      "eslint:recommended"
+      "plugin:vue/essential"
     ],
     "rules": {},
     "parserOptions": {
